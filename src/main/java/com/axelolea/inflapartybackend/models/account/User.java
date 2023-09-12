@@ -1,32 +1,34 @@
-package com.axelolea.inflapartybackend.models;
+package com.axelolea.inflapartybackend.models.account;
 
 
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.util.Date;
 
 @Entity
 @Table(name="users")
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@Getter
-@Setter
+@Data
+@Builder
 public class User {
 
+    // Columns
+
     @Id
-    @Column(name="user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "email", nullable = false, unique = true)
+    @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(name = "hash_password")
+    @Column(nullable = false)
     private String hashPassword;
 
-    @Column(name="created_at")
-    private final Date dateCreated = new Date();
+
+    //  Relationships
+
+    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
+    private Account account;
 
 }
