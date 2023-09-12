@@ -1,12 +1,10 @@
 package com.axelolea.inflapartybackend.controllers;
 
 
-import com.axelolea.inflapartybackend.models.User;
-import com.axelolea.inflapartybackend.services.UserService;
+import com.axelolea.inflapartybackend.models.account.User;
+import com.axelolea.inflapartybackend.services.imp.UserServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -14,9 +12,9 @@ import java.util.List;
 @RequestMapping("/users")
 public class UserController {
 
-    private final UserService userService;
+    private final UserServiceImp userService;
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserServiceImp userService) {
         this.userService = userService;
     }
 
