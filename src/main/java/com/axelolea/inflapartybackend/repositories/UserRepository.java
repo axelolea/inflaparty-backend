@@ -1,6 +1,6 @@
 package com.axelolea.inflapartybackend.repositories;
 
-import com.axelolea.inflapartybackend.models.User;
+import com.axelolea.inflapartybackend.models.account.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
