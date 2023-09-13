@@ -2,6 +2,7 @@ package com.axelolea.inflapartybackend.models.account;
 
 import com.axelolea.inflapartybackend.models.Review;
 import com.axelolea.inflapartybackend.models.product.Product;
+import com.axelolea.inflapartybackend.models.reservation.Reservation;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -37,7 +38,7 @@ public class Account {
 
     private String photoUrl;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private StateUser state;
 
     private Boolean verified;
@@ -62,6 +63,9 @@ public class Account {
 
     @OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
     private List<Review> reviews = new ArrayList<>();
+
+    @OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
+    private List<Reservation> reservations = new ArrayList<>();
 
 
     @ManyToMany

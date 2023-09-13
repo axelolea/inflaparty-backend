@@ -30,7 +30,7 @@ public class Product {
 
     private int price;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private ProductType type;
 
     private boolean isAvailable;
