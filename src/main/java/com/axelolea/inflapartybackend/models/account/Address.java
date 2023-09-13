@@ -1,8 +1,14 @@
 package com.axelolea.inflapartybackend.models.account;
 
 
+import com.axelolea.inflapartybackend.models.reservation.StateReservation;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.Instant;
+import java.util.Date;
 
 @Entity
 @Table(name="addresses")
@@ -19,19 +25,22 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
-    @Column(name = "address_line", nullable = false)
+    @Column(nullable = false)
     private String addressLine;
 
-    @Column(name = "suburb", nullable = false)
+    @Column(nullable = false)
     private String suburb;
 
-    @Column(name = "zipcode", nullable = false)
+    @Column(nullable = false)
     private String zipcode;
 
-    @Column(name = "reference")
     private String reference;
 
+    @CreationTimestamp
+    private Instant createdOn;
+
+    @UpdateTimestamp
+    private Instant updatedOn;
 
     // Relationship
     @ManyToOne(fetch = FetchType.LAZY)
