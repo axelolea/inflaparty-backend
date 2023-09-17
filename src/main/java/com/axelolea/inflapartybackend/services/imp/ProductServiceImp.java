@@ -2,6 +2,7 @@ package com.axelolea.inflapartybackend.services.imp;
 
 import com.axelolea.inflapartybackend.dto.ProductDto;
 import com.axelolea.inflapartybackend.exceptions.NotFoundResourceException;
+import com.axelolea.inflapartybackend.mapper.ProductMapper;
 import com.axelolea.inflapartybackend.models.product.Product;
 import com.axelolea.inflapartybackend.repositories.ProductRepository;
 import com.axelolea.inflapartybackend.services.ProductService;
@@ -31,19 +32,24 @@ public class ProductServiceImp implements ProductService {
     @Override
     public ProductDto getById(long id) {
         Product product = productRepo.findById(id)
-                .orElseThrow(() -> new NotFoundResourceException(id));
+                .orElseThrow(() -> new NotFoundResourceException(id, "Product"));
         return mapToDto(product);
     }
 
     @Override
     public List<ProductDto> search() {
-        return null;
+
+        List<Product> products = productRepo.searchProductsQuery(null, 0, 0);
+
+        return products.stream()
+                .map(ProductMapper::mapToDto)
+                .toList();
     }
 
     @Override
     public ProductDto update(long id, ProductDto productDto) {
         Product product = productRepo.findById(id)
-                .orElseThrow(() -> new NotFoundResourceException(id));
+                .orElseThrow(() -> new NotFoundResourceException(id, "Product"));
         updateEntity(product, productDto);
         Product productSave = productRepo.save(product);
         return mapToDto(productSave);

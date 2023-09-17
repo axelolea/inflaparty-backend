@@ -44,9 +44,12 @@ public class ProductController {
     @GetMapping("search")
     ResponseEntity<List<ProductDto>> searchProducts (
             @RequestParam(required = false) String q,
-            @RequestParam(required = false) ProductType type
+            @RequestParam(required = false) ProductType type,
+            @RequestParam(required = false) int min,
+            @RequestParam(required = false) int max
     ) {
-        return ResponseEntity.ok(new ArrayList<>());
+        List<ProductDto> products = productService.search();
+        return ResponseEntity.ok(products);
     }
 
     @PutMapping("{id}")
