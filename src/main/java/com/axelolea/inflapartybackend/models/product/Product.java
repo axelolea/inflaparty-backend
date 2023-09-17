@@ -33,7 +33,7 @@ public class Product {
     @Enumerated(EnumType.STRING)
     private ProductType type;
 
-    private boolean isAvailable;
+    private boolean available;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "created_by")

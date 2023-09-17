@@ -3,6 +3,8 @@ package com.axelolea.inflapartybackend.controllers;
 
 import com.axelolea.inflapartybackend.dto.ProductDto;
 import com.axelolea.inflapartybackend.models.product.ProductType;
+import com.axelolea.inflapartybackend.services.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +15,15 @@ import java.util.List;
 @RestController
 @RequestMapping("${products-path}")
 public class ProductController {
+
+    private final ProductService productService;
+    @Autowired
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
+
+
+
 
     @PostMapping
     ResponseEntity<ProductDto> createProduct (
