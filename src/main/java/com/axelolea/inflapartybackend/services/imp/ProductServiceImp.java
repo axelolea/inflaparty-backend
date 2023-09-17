@@ -58,6 +58,10 @@ public class ProductServiceImp implements ProductService {
 
     @Override
     public void delete(long id) {
+
+        if(!productRepo.existsById(id))
+            throw new NotFoundResourceException("No founded");
+
         productRepo.deleteById(id);
     }
 }
