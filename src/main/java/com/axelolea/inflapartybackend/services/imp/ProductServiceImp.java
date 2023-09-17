@@ -4,6 +4,7 @@ import com.axelolea.inflapartybackend.dto.ProductDto;
 import com.axelolea.inflapartybackend.exceptions.NotFoundResourceException;
 import com.axelolea.inflapartybackend.mapper.ProductMapper;
 import com.axelolea.inflapartybackend.models.product.Product;
+import com.axelolea.inflapartybackend.models.product.ProductType;
 import com.axelolea.inflapartybackend.repositories.ProductRepository;
 import com.axelolea.inflapartybackend.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,9 +38,9 @@ public class ProductServiceImp implements ProductService {
     }
 
     @Override
-    public List<ProductDto> search() {
+    public List<ProductDto> search(String q, ProductType type, int min, int max) {
 
-        List<Product> products = productRepo.searchProductsQuery(null, 0, 0);
+        List<Product> products = productRepo.searchProductsQuery(q, type, min, max);
 
         return products.stream()
                 .map(ProductMapper::mapToDto)

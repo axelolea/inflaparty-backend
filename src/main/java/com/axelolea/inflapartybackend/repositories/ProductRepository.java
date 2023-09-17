@@ -11,12 +11,15 @@ import java.util.List;
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Query(value = "SELECT p from Product p where " +
+            "p.name like concat('%', :q , '%') and " +
             "p.available = true and " +
             "p.type = :type and " +
             "p.price between :min and :max")
     List<Product> searchProductsQuery (
+            @Param("q") String q,
             @Param("type") ProductType type,
-            @Param("max") int maxPrice,
-            @Param("min") int minPrice
+            @Param("min") int minPrice,
+            @Param("max") int maxPrice
     );
+
 }

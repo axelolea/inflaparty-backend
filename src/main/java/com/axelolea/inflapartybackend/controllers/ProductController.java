@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -48,7 +47,7 @@ public class ProductController {
             @RequestParam(required = false) int min,
             @RequestParam(required = false) int max
     ) {
-        List<ProductDto> products = productService.search();
+        List<ProductDto> products = productService.search(q, type, min, max);
         return ResponseEntity.ok(products);
     }
 
