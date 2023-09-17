@@ -10,8 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static com.axelolea.inflapartybackend.mapper.ProductMapper.mapToDto;
-import static com.axelolea.inflapartybackend.mapper.ProductMapper.mapToEntity;
+import static com.axelolea.inflapartybackend.mapper.ProductMapper.*;
 
 @Service
 public class ProductServiceImp implements ProductService {
@@ -45,7 +44,9 @@ public class ProductServiceImp implements ProductService {
     public ProductDto update(long id, ProductDto productDto) {
         Product product = productRepo.findById(id)
                 .orElseThrow(() -> new NotFoundResourceException(id));
-        return null;
+        updateEntity(product, productDto);
+        Product productSave = productRepo.save(product);
+        return mapToDto(productSave);
     }
 
     @Override

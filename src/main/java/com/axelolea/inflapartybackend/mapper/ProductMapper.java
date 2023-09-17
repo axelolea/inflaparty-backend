@@ -27,4 +27,16 @@ public class ProductMapper {
                 .build();
     }
 
+    public static Product updateEntity (Product entity, ProductDto productDto) {
+
+        entity.setName(productDto.getName());
+        entity.setDescription(productDto.getDescription());
+        entity.setPrice(productDto.getPrice());
+        entity.setType(productDto.getType());
+        entity.setAvailable(productDto.isAvailable());
+        // entity.setUpdatedOn();
+
+        return entity;
+    }
+
 }

@@ -29,14 +29,16 @@ public class ProductController {
     ResponseEntity<ProductDto> createProduct (
             @RequestBody ProductDto product
     ) {
-        return ResponseEntity.ok(product);
+        ProductDto productDto = productService.create(product);
+        return ResponseEntity.ok(productDto);
     }
 
     @GetMapping("{id}")
     ResponseEntity<ProductDto> getProductoById (
             @PathVariable long id
     ) {
-        return ResponseEntity.ok(ProductDto.builder().id(id).build());
+        ProductDto productDto = productService.getById(id);
+        return ResponseEntity.ok(productDto);
     }
 
     @GetMapping("search")
@@ -47,11 +49,13 @@ public class ProductController {
         return ResponseEntity.ok(new ArrayList<>());
     }
 
-    @PutMapping
+    @PutMapping("{id}")
     ResponseEntity<ProductDto> updateProduct (
+            @PathVariable long id,
             @RequestBody ProductDto product
     ) {
-        return ResponseEntity.ok(product);
+        ProductDto productDto = productService.update(id, product);
+        return ResponseEntity.ok(productDto);
     }
 
     @DeleteMapping("{id}")
@@ -59,7 +63,7 @@ public class ProductController {
     void deleteProduct (
             @PathVariable long id
     ) {
-
+        productService.delete(id);
     }
 
 }
