@@ -27,7 +27,7 @@ public class ProductMapper {
                 .build();
     }
 
-    public static Product updateEntity (Product entity, ProductDto productDto) {
+    public static void updateEntity (Product entity, ProductDto productDto) {
 
         entity.setName(productDto.getName());
         entity.setDescription(productDto.getDescription());
@@ -36,7 +36,6 @@ public class ProductMapper {
         entity.setAvailable(productDto.isAvailable());
         // entity.setUpdatedOn();
 
-        return entity;
     }
 
 }
