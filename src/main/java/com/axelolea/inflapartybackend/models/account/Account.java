@@ -51,7 +51,7 @@ public class Account {
 
     // Relationship
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = User.class)
     @JoinColumn(name = "user_id")
     private User user;
 

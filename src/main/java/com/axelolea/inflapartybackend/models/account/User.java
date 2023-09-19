@@ -28,7 +28,7 @@ public class User {
 
     //  Relationships
 
-    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY, targetEntity = Account.class)
     private Account account;
 
 }
